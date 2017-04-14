@@ -251,9 +251,9 @@ def main():
     #for direct in direct_city:
     #    create_excel(direct + '.xlsx', parse_province_data(direct))
 
-    #import time
-    #for province in province_list:
-    #    create_excel('info/' + province + '.xlsx', parse_province_data(province))
+    import time
+    for province in province_list:
+        create_excel('info/' + province + '.xlsx', parse_province_data(province))
 
 
 if __name__ == '__main__':
