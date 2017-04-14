@@ -236,7 +236,7 @@ def main():
     #parse_district_data(u'上海市', u'上海市', u'长宁区')
     #parse_district_data(u'江苏省', u'苏州市', u'平江区')
     #parse_province_data(u'上海市')
-    parse_city_data(u'西藏自治区', u'林芝地区')
+    #parse_city_data(u'西藏自治区', u'林芝地区')
     #create_excel(
     #    u'上海市'.encode('utf-8') + '.xlsx', 
     #    parse_province_data(u'上海市')
@@ -259,5 +259,5 @@ def main():
 if __name__ == '__main__':
     import sys
     province = sys.argv[1]
-    #create_excel('info/' + province + '.xlsx', parse_province_data(province))
-    main()
+    create_excel('info/' + province + '.xlsx', parse_province_data(province))
+    #main()
