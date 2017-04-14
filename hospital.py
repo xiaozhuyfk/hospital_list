@@ -42,12 +42,12 @@ province_list = [
     #u'辽宁省'.encode('utf-8'),
     #u'河北省'.encode('utf-8'),
     #u'河南省'.encode('utf-8'),
-    u'四川省'.encode('utf-8'),
-    u'黑龙江省'.encode('utf-8'),
-    u'山西省'.encode('utf-8'),
-    u'湖北省'.encode('utf-8'),
-    u'湖南省'.encode('utf-8'),
-    u'陕西省'.encode('utf-8'),
+    #u'四川省'.encode('utf-8'),
+    #u'黑龙江省'.encode('utf-8'),
+    #u'山西省'.encode('utf-8'),
+    #u'湖北省'.encode('utf-8'),
+    #u'湖南省'.encode('utf-8'),
+    #u'陕西省'.encode('utf-8'),
     u'浙江省'.encode('utf-8'),
     u'云南省'.encode('utf-8'),
     u'吉林省'.encode('utf-8'),
@@ -167,7 +167,6 @@ def parse_city_data(province, city, url_path = None):
         if (district[-2:] == u'医院'):
             district = district[:-2]
 
-        time.sleep(2)
         result += parse_district_data(
             province, 
             city, 
@@ -254,8 +253,10 @@ def main():
     import time
     for province in province_list:
         create_excel('info/' + province + '.xlsx', parse_province_data(province))
-        #time.sleep(300)
 
 
 if __name__ == '__main__':
-    main()
+    import sys
+    province = sys.argv[1]
+    create_excel('info/' + province + '.xlsx', parse_province_data(province))
+    #main()
