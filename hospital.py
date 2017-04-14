@@ -258,5 +258,5 @@ def main():
 if __name__ == '__main__':
     import sys
     province = sys.argv[1]
-    create_excel('info/' + province + '.xlsx', parse_province_data(province))
-    #main()
+    #create_excel('info/' + province + '.xlsx', parse_province_data(province))
+    main()
