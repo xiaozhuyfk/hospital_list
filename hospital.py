@@ -167,7 +167,7 @@ def parse_city_data(province, city, url_path = None):
         if (district[-2:] == u'医院'):
             district = district[:-2]
 
-        time.sleep(10)
+        time.sleep(2)
         result += parse_district_data(
             province, 
             city, 
