@@ -3,6 +3,7 @@
 import requests
 from bs4 import BeautifulSoup
 from xml.etree import ElementTree
+import time
 
 url = 'http://www.a-hospital.com/w/'
 site = 'http://www.a-hospital.com'
@@ -39,8 +40,8 @@ province_list = [
     #u'广东省'.encode('utf-8'),
     #u'山东省'.encode('utf-8'),
     #u'辽宁省'.encode('utf-8'),
-    u'河北省'.encode('utf-8'),
-    u'河南省'.encode('utf-8'),
+    #u'河北省'.encode('utf-8'),
+    #u'河南省'.encode('utf-8'),
     u'四川省'.encode('utf-8'),
     u'黑龙江省'.encode('utf-8'),
     u'山西省'.encode('utf-8'),
@@ -152,7 +153,12 @@ def parse_city_data(province, city, url_path = None):
     soup = BeautifulSoup(html, 'html.parser')
     
     result = []
+    if (soup.find('ul') is None or soup.find('ul').find('li') is None): 
+        return []
+
     for li in soup.find('ul').find_all('li'):
+        if (li.find('a') is None): continue
+
         href = li.find('a').get('href', None)
         district = li.get_text()
 
@@ -161,11 +167,13 @@ def parse_city_data(province, city, url_path = None):
         if (district[-2:] == u'医院'):
             district = district[:-2]
 
+        time.sleep(10)
         result += parse_district_data(
             province, 
             city, 
             district, 
             site + href)
+
 
     return result
 
@@ -228,7 +236,7 @@ def main():
     #parse_district_data(u'上海市', u'上海市', u'长宁区')
     #parse_district_data(u'江苏省', u'苏州市', u'平江区')
     #parse_province_data(u'上海市')
-    #parse_city_data(u'江苏省', u'无锡市')
+    #parse_city_data(u'河北省', u'邢台市')
     #create_excel(
     #    u'上海市'.encode('utf-8') + '.xlsx', 
     #    parse_province_data(u'上海市')
@@ -243,8 +251,10 @@ def main():
     #for direct in direct_city:
     #    create_excel(direct + '.xlsx', parse_province_data(direct))
 
+    import time
     for province in province_list:
-        create_excel(province + '.xlsx', parse_province_data(province))
+        create_excel('info/' + province + '.xlsx', parse_province_data(province))
+        #time.sleep(300)
 
 
 if __name__ == '__main__':
