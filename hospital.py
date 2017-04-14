@@ -48,20 +48,20 @@ province_list = [
     #u'湖北省'.encode('utf-8'),
     #u'湖南省'.encode('utf-8'),
     #u'陕西省'.encode('utf-8'),
-    u'浙江省'.encode('utf-8'),
+    #u'浙江省'.encode('utf-8'),
     u'云南省'.encode('utf-8'),
-    u'吉林省'.encode('utf-8'),
-    u'安徽省'.encode('utf-8'),
-    u'广西壮族自治区'.encode('utf-8'),
-    u'江西省'.encode('utf-8'),
-    u'福建省'.encode('utf-8'),
+    #u'吉林省'.encode('utf-8'),
+    #u'安徽省'.encode('utf-8'),
+    #u'广西壮族自治区'.encode('utf-8'),
+    #u'江西省'.encode('utf-8'),
+    #u'福建省'.encode('utf-8'),
     u'新疆维吾尔自治区'.encode('utf-8'),
     u'内蒙古自治区'.encode('utf-8'),
     u'甘肃省'.encode('utf-8'),
     u'贵州省'.encode('utf-8'),
     u'海南省'.encode('utf-8'),
     u'青海省'.encode('utf-8'),
-    u'宁夏回族自治区'.encode('utf-8'),
+    #u'宁夏回族自治区'.encode('utf-8'),
     u'西藏自治区'.encode('utf-8'),
 ]
 
@@ -151,6 +151,7 @@ def parse_city_data(province, city, url_path = None):
     response = requests.get(url_path, headers = headers)
     html = response.content
     soup = BeautifulSoup(html, 'html.parser')
+    print soup
     
     result = []
     if (soup.find('ul') is None or soup.find('ul').find('li') is None): 
@@ -235,7 +236,7 @@ def main():
     #parse_district_data(u'上海市', u'上海市', u'长宁区')
     #parse_district_data(u'江苏省', u'苏州市', u'平江区')
     #parse_province_data(u'上海市')
-    #parse_city_data(u'河北省', u'邢台市')
+    parse_city_data(u'西藏自治区', u'林芝地区')
     #create_excel(
     #    u'上海市'.encode('utf-8') + '.xlsx', 
     #    parse_province_data(u'上海市')
@@ -250,13 +251,13 @@ def main():
     #for direct in direct_city:
     #    create_excel(direct + '.xlsx', parse_province_data(direct))
 
-    import time
-    for province in province_list:
-        create_excel('info/' + province + '.xlsx', parse_province_data(province))
+    #import time
+    #for province in province_list:
+    #    create_excel('info/' + province + '.xlsx', parse_province_data(province))
 
 
 if __name__ == '__main__':
     import sys
     province = sys.argv[1]
-    create_excel('info/' + province + '.xlsx', parse_province_data(province))
-    #main()
+    #create_excel('info/' + province + '.xlsx', parse_province_data(province))
+    main()
